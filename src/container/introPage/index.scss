@@ -1,0 +1,100 @@
+$gongsi :"account-top@3x" ;
+$imgRoot:"//img.58cdn.com.cn/job/m/my/qzzbz/0.1/img/" ;
+.IntroPage-block{
+  width: 100%;
+  height: auto;
+  margin: auto;
+  .person-cards-content{
+    width: 1200px;
+    height: auto;
+    margin: auto;
+    display: flex ;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding-top: 120px;
+  }
+  .person-cards-block{
+    width: 360px;
+    height: 360px;
+    background: #fff;
+    margin: 20px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform linear 0.3s;
+    box-shadow:0px 3px 3px 2px #eee ;
+    .reverse-detail{
+      display: none;
+    }
+    &:hover{
+      transform: rotateY(180deg);
+      background: #f5f5cc;
+      .reverse-detail{
+        display: block;
+      }
+      .normal-intro{
+        display: none;
+      }
+    }
+    .normal-intro .title-img{
+      width: 120px;
+      height: 120px;
+      background: lightblue;
+      margin: 60px auto;
+      border-radius: 60px;
+      background-size: contain !important;
+    }
+    .normal-intro .title-intro{
+      font-size: 20px;
+    }
+  }
+  .person-cards-block .title-img:nth-child(1){
+    background: url('../../assest/gongsi.png') no-repeat;
+  }
+  .person-cards-block:nth-child(2) .title-img{
+    background: url('../../assest/ganxingquzhiwei.png') no-repeat;
+  }
+  .person-cards-block:nth-child(3) .title-img:nth-child(3){
+    background: url('../../assest/gongzuotai.png') no-repeat;
+  }
+  .person-cards-block .title-img:nth-child(4){
+    background: url('../../assest/jishufuwu.png') no-repeat;
+  }
+  .person-cards-block:nth-child(5) .title-img{
+    background: url('../../assest/qita.png') no-repeat;
+  }
+  .person-cards-block:nth-child(6) .title-img:nth-child(3){
+    background: url('../../assest/user.png') no-repeat;
+  }
+  .icon-more{
+    width: 60px;
+    height: 80px;
+    background: url('../../assest/arrow.png') no-repeat;
+    background-size: contain;
+    margin: auto;
+    margin-top: 80px;
+    cursor: pointer;
+    animation: pullaction linear 1s infinite;
+  }
+  .userTool-content{
+    width: 1200px;
+    height: 400px;
+    margin: auto;
+  }
+}
+
+
+@keyframes pullaction{
+  25%{
+    transform: translate3d(0,10px ,0);
+  }
+  50%{
+    transform: translate3d(0,0px,0);
+  }
+  75%{
+    transform: translate3d(0,-10px,0);
+  }
+  100%{
+    transform: translate3d(0,0,0);
+  }
+}
