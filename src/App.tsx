@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, HashRouter as Router ,Route } from 'react-router-dom' ;
-import { IndexPage , IntroPage } from './container' ;
+import { IndexPage , IntroPage, LoginPage } from './container' ;
 import './App.scss';
 
 function App() {
@@ -9,6 +9,7 @@ function App() {
       <Router>
         <Switch>
             <Route exact path="/" component={IndexPage} /> 
+            <Route exact path="/login" component={LoginPage}></Route>
             <Route exact path="/intro" component={IntroPage} /> 
         </Switch>
       </Router>

@@ -1,4 +1,7 @@
 import React, { useRef, useEffect, useCallback, useState } from 'react' ;
+import { Link } from 'react-router-dom' ;
+import axios from 'axios' ;
+
 
 
 const IndexPage = () => {
@@ -9,7 +12,16 @@ const IndexPage = () => {
     console.log("id:",id) ;
     setId(id+1) ;
   }
- 
+  
+  useEffect(() => {
+    axios.get("http://localhost:3000/users").then((res) => {
+      console.log('555',res) ;
+    }).catch((err) => {
+      console.log(err);
+    })
+  },[])
+
+
   //防抖
   function useDebounce(fn:any, delay:number) {
   // 存储去抖动后的值
@@ -34,7 +46,9 @@ const IndexPage = () => {
     <div className="IndexPage-block">
       <div className="user-img">
       </div>
-      <div className="enter-text" onClick={useDebounce(handleClick, 2000)}>Enter</div>
+      <div className="enter-text" onClick={useDebounce(handleClick, 2000)}>
+        <Link to="/intro">Enter</Link>
+      </div>
       <div className="bruce">
         <ul className="bubble-bgwall">
           <li>Love</li> 
