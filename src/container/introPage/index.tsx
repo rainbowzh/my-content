@@ -50,7 +50,7 @@ const IntroPage = () => {
       </ul>
       <div className="icon-more"></div>
       <div className="userTool-content">
-        {/* <ShapeIntro/> */}
+        <ShapeIntro/>
       </div>
     </div>
   )

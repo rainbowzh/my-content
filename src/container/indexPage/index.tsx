@@ -1,11 +1,12 @@
 import React, { useRef, useEffect, useCallback, useState } from 'react' ;
 import { Link } from 'react-router-dom' ;
 import axios from 'axios' ;
+import { useAppState } from '../../state' ;
 
 
-
-const IndexPage = () => {
+const IndexPage = (props:any) => {
   const [id, setId] = useState(0) ;
+  const [state, dispatch] = useAppState() ; //更改状态
   // const decounceId = useDebounce(id, 2000) ;
 
   const handleClick = () => {
@@ -41,6 +42,7 @@ const IndexPage = () => {
     );
   }
 
+  console.log('props',state.username) ;
 
   return (
     <div className="IndexPage-block">

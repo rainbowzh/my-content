@@ -1,4 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react' ;
+import CryptoJS from 'crypto-js' ;
+import { goToLogin } from '../../util/api' ;
+import { useAppState } from '../../state' ;
+import { Redirect } from 'react-router-dom';
 
 const LoginPage = () => {
   const [name, setName] = useState("") ;
@@ -6,6 +10,7 @@ const LoginPage = () => {
   const [nametips, setNameTips] = useState("") ;
   const [passtips, setPassTips] = useState("") ;
   const [res, setRes] = useState(1) ;
+  const [state, dispatch] = useAppState() ; //更改状态
 
   const handleName = (e:any) => {
     setName(e.target.value) ;
@@ -16,11 +21,27 @@ const LoginPage = () => {
   }
 
   //处理登录逻辑
-  const handleTosubmit = () => {
+  const handleTosubmit = async () => {
     if((name.length>0)&&(password.length>0)&&(nametips.length<1)&&(passtips.length<1)){
       //加密，发起请求
-      console.log('correct');
-      setRes(3) ;
+      // let salt = window.localStorage.getItem('userSalt');
+      let salt = "34565E5T3" ;
+      if(salt){
+        let saltPass = CryptoJS.HmacMD5(password, salt).toString(CryptoJS.enc.Hex);//加密
+        let params = { name : name ,password : saltPass} ;
+        let result = await goToLogin(params) ;
+        switch(result.status){
+          case "0"://登录成功
+          case "2"://注册成功
+            window.location.href = window.location.origin ;
+            break;
+          default ://失败
+            break;
+        }
+      }else{//请求salt
+        
+      }
+      
     }else{
       setPassTips('未正确填写信息');
       console.log(33)
