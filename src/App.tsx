@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, HashRouter as Router ,Route } from 'react-router-dom' ;
-import { IndexPage , IntroPage, LoginPage, ArticlePage } from './container' ;
+import { IndexPage , IntroPage, LoginPage, ArticlePage, EditPage } from './container' ;
 import { AppProvider } from './state' ;
 import './App.scss';
 
@@ -25,10 +25,11 @@ function App() {
       <AppProvider initValue={initData} reducer={reducer}>
       <Router>
         <Switch>
-            <Route exact path="/" component={IndexPage}/> 
+            <Route exact path="/" component={IndexPage}></Route>
             <Route exact path="/login" component={LoginPage}></Route>
-            <Route exact path="/intro" component={IntroPage} /> 
+            <Route exact path="/intro" component={IntroPage}></Route>
             <Route exact path="/article" component={ArticlePage}></Route>
+            <Route exact path="/edit" component={EditPage}></Route>
         </Switch>
       </Router>
       </AppProvider>

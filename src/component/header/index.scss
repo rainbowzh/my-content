@@ -1,0 +1,50 @@
+.search-title{
+  width: 100%;
+  height: 100px;
+  box-shadow: 0px 8px 8px 0px rgba(137, 48, 221, 0.2);
+  background: #fff;
+  position: fixed;
+  top: 0px;
+  z-index: 5;
+  overflow: hidden;
+  .logo-left{
+    float: left;
+    // width: 100px;
+    height: 60px;
+    // background: url('//pic1.58cdn.com.cn/nowater/cxnomark/n_v2bb0d176220354a72b027acca296439b2.png') no-repeat;
+    // background-size: contain;
+    transform: scale(1.5);
+    margin: 20px 60px;
+    animation: shanking 4s infinite;
+    img{
+      width: auto;
+      height: 100% ;
+    }
+    img:nth-child(2){
+      margin-left: -30px;
+      transform: scale(1.5);
+    }
+  }
+  .title-welcome{
+    float: left;
+    height: 100px;
+    line-height: 130px;
+    color: rgba(123, 9, 158, 0.8);
+    font-family: PingFangSC-Medium ,sans-serif;
+    // font-weight: bold;
+  }
+  input{
+    float: right;
+    width: 318px;
+    height: 40px;
+    border: 1px solid rgb(178, 52, 216);
+    border-radius: 20px;
+    padding: 5px 14px;
+    color: #333;
+    font-size: 16px;
+    margin: 40px 70px 0px 30px;
+  }
+  input:hover{
+    box-shadow: 0px 2px 2px 2px  rgba(179, 67, 212, 0.3);
+  }
+}
