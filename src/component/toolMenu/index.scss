@@ -1,0 +1,61 @@
+.ToolMenu-tips{
+  width: 100px;
+  height: auto;
+  // overflow: hidden;
+  position: fixed;
+  top: 0px;
+  right: 120px;
+  .tool-line{
+    height: 150px;
+    width: 5px;
+    margin: auto;
+    background: linear-gradient(#eb6912, #c4a80d,#e2ad1c);
+    animation: lineframes 8s ease-in-out infinite;
+  }
+  .tool-block{
+    width: 100px;
+    height: auto;
+    overflow: hidden;
+    border-radius: 10px;
+    padding: 20px 0px;
+    background: #fff;
+    margin-top: -5px;
+    animation: blockframes 8s ease-in-out infinite;
+  }
+  .menu-item{
+    height: 40px;
+    line-height: 40px;
+    font-size: 18px;
+    color:  rgba(140, 37, 209,0.8);
+    background: #ffffff;
+  }
+  .menu-item:hover{
+    cursor: pointer;
+    color: rgb(140, 37, 209);
+  }
+}
+
+@keyframes lineframes{
+  0%{
+    transform: rotate3d(1, 1, 1, 10deg);
+  }
+  
+  50%{
+    transform: rotate3d(1, 1, 1, -10deg);
+  }
+  100%{
+    transform: rotate3d(1, 1, 1, 10deg);
+  }
+}
+@keyframes blockframes {
+  0%{
+    transform: rotate3d(1, 1, 1, -5deg);
+  }
+  
+  50%{
+    transform: rotate3d(1, 1, 1, 5deg);
+  }
+  100%{
+    transform: rotate3d(1, 1, 1, -5deg);
+  }
+}

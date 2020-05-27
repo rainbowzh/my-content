@@ -1,6 +1,6 @@
 import React from 'react' ;
 import ShapeIntro from '../shapIntro' ;
-
+import { SlideBlock, ToolMenu } from '../../component';
 const IntroPage = () => {
   return(
     <div className="IntroPage-block">
@@ -52,6 +52,14 @@ const IntroPage = () => {
       <div className="userTool-content">
         <ShapeIntro/>
       </div>
+      <div className="icon-more"></div>
+      <SlideBlock/>
+      <div className="icon-more"></div>
+      <div className="extends-intro">
+        <div className="gotoList"></div>
+        <div className="gotoEdit"></div>
+      </div>
+      <ToolMenu/>
     </div>
   )
 }

@@ -5,7 +5,7 @@ import { postArticle } from '../../util/api' ;
 
 
 const EditPage = () => {
-  const [value, setValue] = useState("20200513") ;
+  const [value, setValue] = useState(new Date().toLocaleDateString()) ;
   const [htmlShow, setHtmlShow] = useState("");
   const [list ,setList] = useState([]);
 
@@ -68,7 +68,7 @@ const EditPage = () => {
   }
 
   const handleToAddNew = () => {
-    
+
   }
 
 

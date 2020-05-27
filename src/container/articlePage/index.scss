@@ -25,6 +25,7 @@
       position: fixed;
       right: calc(75% + 30px);
       top: 102px;
+      overflow-y: auto;
       // box-shadow: 0px 8px 8px 0px #eee;
     }
     .content-main{
