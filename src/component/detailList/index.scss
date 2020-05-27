@@ -1,0 +1,33 @@
+.DetailList-block{
+  width: 100%;
+  padding:5px 10px;
+  border-bottom: 1px solid rgba(123, 9, 158, 0.4);
+  .title{
+    text-align: left;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    height: 40px;
+    line-height: 40px;
+    font-size: 18px;
+  }
+  .other{
+    margin-top: 8px;
+    text-align: right;
+  }
+  span{
+    display: inline-block;
+    width: auto;
+    height: 20px;
+    font-size: 14px;
+    color: #333;
+  }
+  span:nth-child(2){
+    margin-left: 10px;
+  }
+  &:hover{
+    background: rgba(123, 9, 158, 0.1);
+    cursor: pointer;
+  }
+}

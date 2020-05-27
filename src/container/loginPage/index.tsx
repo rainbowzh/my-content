@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react' ;
 import CryptoJS from 'crypto-js' ;
-import { goToLogin } from '../../util/api' ;
+import { goToLogin, postLogin } from '../../util/api' ;
 import { useAppState } from '../../state' ;
 import { Redirect } from 'react-router-dom';
 
@@ -29,7 +29,8 @@ const LoginPage = () => {
       if(salt){
         let saltPass = CryptoJS.HmacMD5(password, salt).toString(CryptoJS.enc.Hex);//加密
         let params = { name : name ,password : saltPass} ;
-        let result = await goToLogin(params) ;
+        let result:any = await postLogin(params) ;
+        console.log('result',result);
         switch(result.status){
           case "0"://登录成功
           case "2"://注册成功

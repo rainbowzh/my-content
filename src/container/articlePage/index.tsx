@@ -1,17 +1,42 @@
-import React from 'react' ;
-import { Header } from '../../component' ;
+import React, { useEffect, useState } from 'react' ;
+import { Header, DetaiList } from '../../component' ;
+import { getArticleList } from '../../util/api' ;
 
 const ArticlePage = () => {
+  const [list, setList] = useState([]) ;
+  const [content, setContent] = useState("暂无内容") ;
+  useEffect(() =>  {
+    const getList = async () => {
+      let res = await getArticleList();
+      console.log('list---',res.list) ;
+      setList(res.list);
+      setContent(res.list[2].context);
+    }
+    getList();
+  },[]);
+
+  //切换了文章
+  const updateContent = (value:any) => {
+    const { context } = value;
+    setContent(context) ;
+  }
+
   return (
     <React.Fragment>
       <Header/>
       <div className="ArticlePage-block">
         <div className="leftList">
-          <div className="center-extends"></div>
-          <div className="content-main">
-            1.下午3点至4点展示，每天展示1次；
-            2.点击看直播按钮进入直播间，点击X关闭弹窗，关闭后当天不再展示；
-            3.弹窗物料根据当天直播内容有所不同，按照下述对应日期上线。
+          <div className="center-extends">
+           
+            {
+              list.map( (item:any, index:number) => {
+                return(
+                  <DetaiList data={item} key={index} tool={updateContent}/>
+                )
+              })
+            }
+          </div>
+          <div className="content-main" dangerouslySetInnerHTML={{__html: content}}>
           </div>
         </div>
         <div className="rightList">

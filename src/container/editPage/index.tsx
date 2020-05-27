@@ -1,10 +1,44 @@
-import React, { useRef, useState } from 'react' ;
-import { Header } from '../../component' ;
+import React, { useRef, useState,useEffect } from 'react' ;
+import { Header, EditList } from '../../component' ;
 import { Link, Route } from 'react-router-dom' ;
+import { postArticle } from '../../util/api' ;
+
 
 const EditPage = () => {
   const [value, setValue] = useState("20200513") ;
   const [htmlShow, setHtmlShow] = useState("");
+  const [list ,setList] = useState([]);
+
+
+  //获取编辑文章列表
+  useEffect(() => {
+    initList();
+  },[]);
+
+  const initList = () => {
+    // let list = [
+    //   {
+    //     id : "1",
+    //     title : "222",
+    //     context : `dfadfsfdsgag<div>刮大风胡</div><div>g8yet8ierb</div><div>根本就风的告白井冈山报</div>`
+    //   },
+    //    {
+    //     id : "12",
+    //     title : "1222",
+    //     context : `dfadfsfdsgag<div>666666</div><div>g8yet8ierb</div><div>hgfjdsh</div>`
+    //   }
+    // ] ;
+    // let value = JSON.stringify({value : list}) ;
+    // window.localStorage.setItem('Article-List', value);
+
+    let item = window.localStorage.getItem("Article-List") ;
+    if(item){
+      console.log(JSON.parse(item));
+      setList(JSON.parse(item).value);
+    }
+
+  }
+
   //改变名称
   const hanleToChangeValue = (e:any) => {
     console.log(e.target.value);
@@ -18,22 +52,33 @@ const EditPage = () => {
   //发布
   const handleToPublish = () => {
     let html = document.getElementsByClassName("text-content")[0].innerHTML ;
-    setHtmlShow(html);
+    // setHtmlShow(html);
+    let params = {
+      title : value ,
+      context : html 
+    }
+    postArticle(params).then((res) => {
+      console.log('save',res);
+    })
   }
+
+  const setInnerText = (value:any) => {
+    console.log("htmlshow", htmlShow)
+    setHtmlShow(`${value.context}`);
+  }
+
+  const handleToAddNew = () => {
+    
+  }
+
 
   return(
     <React.Fragment>
-      <Header/>
+      {/* <Header/> */}
       <div className="EditPage-block">
         <div className="left">
-          <div className="btn-add-new">新建文章</div>
-          <div className="content-newlist">
-            <ul>
-              <Link to="/Edit/1213"><li className="list-item">20201212</li></Link>
-              <Link to="/Edit/333"><li className="list-item">20120111</li></Link>
-              <Link to="/Edit/332"><li className="list-item">20101211</li></Link>
-            </ul>
-          </div>
+          <div className="btn-add-new" onClick={handleToAddNew}>新建文章</div>
+          <EditList handler={setInnerText} List={list}></EditList>
         </div>
         <div className="right">
           <input className="text-title" value={value} onChange={(e) => hanleToChangeValue(e)}></input>
@@ -50,13 +95,17 @@ const EditPage = () => {
                 <p onClick={() => handleToText("fontSize","6")}>大</p>
               </div>
             </div>
+            <div className="text-item" onClick={() => handleToText("backColor","transparent")}></div>
             <div className="ad-out">
               <div className="btn-save">save</div>
               <div className="btn-publish" onClick={handleToPublish}>publish</div>
             </div>
           </div>
-          <div className="text-content" dangerouslySetInnerHTML={{__html : htmlShow}} >
-          </div>
+          {
+            htmlShow == "" ? <div className="text-content" contentEditable={true}></div>
+            : <div className="text-content" dangerouslySetInnerHTML={{__html : htmlShow}}  contentEditable={true}></div>
+          }
+          {/* <div className="text-content" dangerouslySetInnerHTML={{__html : htmlShow}}  contentEditable={true}></div> */}
         </div>
       </div>
     </React.Fragment>
