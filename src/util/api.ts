@@ -4,35 +4,15 @@
  * @Author: zhouhong07
  * @Date: 2020-05-11 10:37:28
  * @LastEditors: zhouhong07
- * @LastEditTime: 2020-05-27 10:40:22
+ * @LastEditTime: 2020-06-05 10:45:09
  */
 import axios from 'axios' ;
-const host = '//localhost:3000/users' ;
+const host = '//49.235.235.22:3000/api' ;
 
-const login = `${host}/registe` ;
-
-
-
-
-const goToLogin = (value:any) => {
-  return axios.get(login, {
-    params : {
-      name : value.name ,
-      password : value.password
-    } ,
-    // withCredentials : true ,
-    timeout : 5000,
-  }).then((res) => {
-    console.log('login:',res) ;
-    return res.data ;
-  }).catch((err) => {
-    console.log('err:',err);
-  })
-}
 
 
 const postLogin = (value:any) => {
-  return axios.post('//localhost:3000/api/user/login' ,{
+  return axios.post(`${host}/user/login` ,{
     username : value.name ,
     password : value.password
   })
@@ -48,7 +28,7 @@ const postLogin = (value:any) => {
 
 //发布文章
 const postArticle = (value:any) => {
-  return axios.post('//localhost:3000/api/article/save', {
+  return axios.post(`${host}/article/save`, {
     title : value.title ,
     context : value.context
   })
@@ -63,7 +43,7 @@ const postArticle = (value:any) => {
 
 //获取文章列表
 const getArticleList = () => {
-  return axios.get('//localhost:3000/api/article/list', {
+  return axios.get(`${host}/article/list`, {
     timeout : 5000 
   })
   .then((res) => {
@@ -78,7 +58,6 @@ const getArticleList = () => {
 
 
 export {
-  goToLogin ,
   postLogin ,
   postArticle ,
   getArticleList

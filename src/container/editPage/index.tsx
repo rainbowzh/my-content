@@ -68,9 +68,13 @@ const EditPage = () => {
   }
 
   const handleToAddNew = () => {
-
+    let item:any = { id : "43" ,title : `${new Date().toLocaleDateString()}`, context : ""} ;
+    setList(list.concat(item));
   }
 
+  const handleToSave = () => {
+
+  }
 
   return(
     <React.Fragment>
@@ -81,31 +85,35 @@ const EditPage = () => {
           <EditList handler={setInnerText} List={list}></EditList>
         </div>
         <div className="right">
-          <input className="text-title" value={value} onChange={(e) => hanleToChangeValue(e)}></input>
-          <div className="text-tool">
-            <div className="text-item" onClick={() => handleToText("Bold")}></div>
-            <div className="text-item" onClick={() => handleToText("justifyCenter")}></div>
-            <div className="text-item" onClick={() => handleToText("strikeThrough")}></div>
-            <div className="text-item" onClick={() => handleToText("italic")}></div>
-            <div className="text-item" onClick={() => handleToText("justifyLeft")}></div>
-            <div className="text-item" >
-              <div className="text-size-block">
-                <p onClick={() => handleToText("fontSize","2")}>小</p>
-                <p onClick={() => handleToText("fontSize","4")}>中</p>
-                <p onClick={() => handleToText("fontSize","6")}>大</p>
-              </div>
-            </div>
-            <div className="text-item" onClick={() => handleToText("backColor","transparent")}></div>
-            <div className="ad-out">
-              <div className="btn-save">save</div>
-              <div className="btn-publish" onClick={handleToPublish}>publish</div>
-            </div>
-          </div>
           {
-            htmlShow == "" ? <div className="text-content" contentEditable={true}></div>
-            : <div className="text-content" dangerouslySetInnerHTML={{__html : htmlShow}}  contentEditable={true}></div>
+            list.length < 1 ? <span className="writer-ground">rainbow</span>
+            : <React.Fragment>
+               <input className="text-title" value={value} onChange={(e) => hanleToChangeValue(e)}></input>
+              <div className="text-tool">
+                <div className="text-item" onClick={() => handleToText("Bold")}></div>
+                <div className="text-item" onClick={() => handleToText("justifyCenter")}></div>
+                <div className="text-item" onClick={() => handleToText("strikeThrough")}></div>
+                <div className="text-item" onClick={() => handleToText("italic")}></div>
+                <div className="text-item" onClick={() => handleToText("justifyLeft")}></div>
+                <div className="text-item" >
+                  <div className="text-size-block">
+                    <p onClick={() => handleToText("fontSize","2")}>小</p>
+                    <p onClick={() => handleToText("fontSize","4")}>中</p>
+                    <p onClick={() => handleToText("fontSize","6")}>大</p>
+                  </div>
+                </div>
+                <div className="text-item" onClick={() => handleToText("backColor","transparent")}></div>
+                <div className="ad-out">
+                  <div className="btn-save" onClick={handleToSave}>save</div>
+                  <div className="btn-publish" onClick={handleToPublish}>publish</div>
+                </div>
+              </div>
+              {
+                htmlShow == "" ? <div className="text-content" contentEditable={true}></div>
+                : <div className="text-content" dangerouslySetInnerHTML={{__html : htmlShow}}  contentEditable={true}></div>
+              }
+            </React.Fragment>
           }
-          {/* <div className="text-content" dangerouslySetInnerHTML={{__html : htmlShow}}  contentEditable={true}></div> */}
         </div>
       </div>
     </React.Fragment>

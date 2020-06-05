@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react' ;
 import CryptoJS from 'crypto-js' ;
-import { goToLogin, postLogin } from '../../util/api' ;
+import { postLogin } from '../../util/api' ;
 import { useAppState } from '../../state' ;
 import { Redirect } from 'react-router-dom';
 

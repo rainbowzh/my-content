@@ -1,5 +1,5 @@
 import React from 'react' ;
-import { Link } from 'react-router-dom' ;
+import { Link, Redirect } from 'react-router-dom' ;
 
 const List = [
   {
@@ -70,12 +70,12 @@ const EditList = (props:any) => {
    //删除
   const handleToDelete = (value:number) => {
     //发起删除的请求
-    List.splice(value,1);
+    props.List.splice(value,1);
+    console.log('list',List, value);
   }
 
   const handleToshow = (value:any) => {
     props.handler(value);
-    console.log(1)
   }
   return (
     <div className="content-newlist">

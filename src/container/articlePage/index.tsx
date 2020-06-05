@@ -10,7 +10,8 @@ const ArticlePage = () => {
       let res = await getArticleList();
       console.log('list---',res.list) ;
       setList(res.list);
-      setContent(res.list[2].context);
+      // if()
+      // setContent(res.list[2].context);
     }
     getList();
   },[]);
