@@ -1,31 +1,31 @@
 .ToolMenu-tips{
-  width: 100px;
+  width: 70px;
   height: auto;
   // overflow: hidden;
   position: fixed;
   top: 0px;
-  right: 120px;
+  right: 20px;
   .tool-line{
-    height: 150px;
+    height: 40px;
     width: 5px;
     margin: auto;
     background: linear-gradient(#eb6912, #c4a80d,#e2ad1c);
     animation: lineframes 8s ease-in-out infinite;
   }
   .tool-block{
-    width: 100px;
+    width: 70px;
     height: auto;
     overflow: hidden;
     border-radius: 10px;
-    padding: 20px 0px;
+    padding: 5px 0px;
     background: #fff;
     margin-top: -5px;
-    animation: blockframes 8s ease-in-out infinite;
+    animation: blockframes 8s ease-in-out 0.4s infinite;
   }
   .menu-item{
-    height: 40px;
-    line-height: 40px;
-    font-size: 18px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
     color:  rgba(140, 37, 209,0.8);
     background: #ffffff;
   }
