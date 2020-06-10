@@ -2,9 +2,11 @@ import React, { useRef, useState,useEffect } from 'react' ;
 import { Header, EditList } from '../../component' ;
 import { Link, Route } from 'react-router-dom' ;
 import { postArticle } from '../../util/api' ;
+import { Modal } from 'antd' ;
+import { random } from '../../util/helper';
 
 
-const EditPage = () => {
+const EditPage = (props:any) => {
   const [value, setValue] = useState(new Date().toLocaleDateString()) ;
   const [htmlShow, setHtmlShow] = useState("");
   const [list ,setList] = useState([]);
@@ -16,7 +18,7 @@ const EditPage = () => {
   },[]);
 
   const initList = () => {
-    // let list = [
+     // let list = [
     //   {
     //     id : "1",
     //     title : "222",
@@ -58,7 +60,18 @@ const EditPage = () => {
       context : html 
     }
     postArticle(params).then((res) => {
-      console.log('save',res);
+      if(res.status == '0'){
+         Modal.success({
+          title : "发布成功" ,
+          onOk : () => {
+            window.location.href= "//localhost:3000/#/article";
+          }
+        })
+      }else{
+         Modal.error({
+          title : "发布失败" ,
+        })
+      }
     })
   }
 
@@ -68,8 +81,10 @@ const EditPage = () => {
   }
 
   const handleToAddNew = () => {
-    let item:any = { id : "43" ,title : `${new Date().toLocaleDateString()}`, context : ""} ;
+    let idKey = random();
+    let item:any = { id : idKey ,title : `${new Date().toLocaleDateString()}`, context : ""} ;
     setList(list.concat(item));
+    props.history.push(`/edit/${idKey}`)
   }
 
   const handleToSave = () => {

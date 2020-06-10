@@ -1,5 +1,6 @@
 import React from 'react' ;
 import { Link, Redirect } from 'react-router-dom' ;
+import { withRouter } from 'react-router-dom' ;
 
 const List = [
   {
@@ -71,7 +72,9 @@ const EditList = (props:any) => {
   const handleToDelete = (value:number) => {
     //发起删除的请求
     props.List.splice(value,1);
-    console.log('list',List, value);
+    console.log('list',props.List, value);
+    props.history.goBack();
+    console.log(4)
   }
 
   const handleToshow = (value:any) => {
@@ -83,7 +86,7 @@ const EditList = (props:any) => {
         {
           props.List.map((item:any, index:number) => {
             return (
-              <Link to={`/Edit/${item.id}`} key={item.id} onClick={() => handleToshow(item)}>
+              <Link to={`/edit/${item.id}`} key={item.id} onClick={() => handleToshow(item)}>
                 <li className="list-item">
                   {item.title}
                   <div className="setting">
@@ -104,4 +107,4 @@ const EditList = (props:any) => {
 }
 
 
-export default EditList ;
+export default withRouter(EditList) ;
