@@ -2839,6 +2839,11 @@ cache-base@^1.0.1:
     union-value "^1.0.0"
     unset-value "^1.0.0"
 
+cache-localstorage@^1.0.13:
+  version "1.0.13"
+  resolved "https://registry.npmjs.org/cache-localstorage/-/cache-localstorage-1.0.13.tgz#25613ab5746af7dc97c3a74e5fc958a4d9ca74ef"
+  integrity sha512-5nQoaC9hKjbdpWawxorhuZm2HPgyQxeqdZO2OS3YExaUXVxeXK0353HXfNGrHmHkCHfms7EN16WunpSIuTvstw==
+
 call-me-maybe@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npmjs.org/call-me-maybe/-/call-me-maybe-1.0.1.tgz#26d208ea89e37b5cbde60250a15f031c16a4d66b"
