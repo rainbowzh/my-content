@@ -27,16 +27,6 @@ $imgRoot:"//img.58cdn.com.cn/job/m/my/qzzbz/0.1/img/" ;
     .reverse-detail{
       display: none;
     }
-    &:hover{
-      transform: rotateY(180deg);
-      background: #f5f5cc;
-      .reverse-detail{
-        display: block;
-      }
-      .normal-intro{
-        display: none;
-      }
-    }
     .normal-intro .title-img{
       width: 120px;
       height: 120px;
@@ -47,6 +37,26 @@ $imgRoot:"//img.58cdn.com.cn/job/m/my/qzzbz/0.1/img/" ;
     }
     .normal-intro .title-intro{
       font-size: 20px;
+    }
+  }
+  .person-cards-block-hide{
+    transform: rotateY(180deg);
+    transform-style: preserve-3d;
+    background: #f5f5cc;
+    transition: all .5s ease-out;
+    .reverse-detail-show{
+      margin: 20px 30px;
+      border-radius: 10px;
+      display: block;
+      transform: rotateY(-180deg);
+      transition: all .5s ease-out;
+    }
+    .reverse-detail-show p {
+      line-height: 40px;
+      text-align: left;
+    }
+    .normal-intro{
+      display: none;
     }
   }
   .person-cards-block .title-img:nth-child(1){
@@ -68,8 +78,8 @@ $imgRoot:"//img.58cdn.com.cn/job/m/my/qzzbz/0.1/img/" ;
     background: url('../../assest/user.png') no-repeat;
   }
   .icon-more{
-    width: 60px;
-    height: 80px;
+    width: 40px;
+    height: 60px;
     background: url('../../assest/arrow.png') no-repeat;
     background-size: contain;
     margin: auto;

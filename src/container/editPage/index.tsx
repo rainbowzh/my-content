@@ -63,7 +63,7 @@ const EditPage = (props:any) => {
          Modal.success({
           title : "发布成功" ,
           onOk : () => {
-            window.location.href= "//localhost:3000/#/article";
+            window.location.href= "//49.235.235.22:3000/web/mylog#/article";
           }
         })
       }else{
@@ -182,6 +182,7 @@ const EditPage = (props:any) => {
                   </div>
                 </div>
                 <div className="text-item" onClick={() => handleToText("backColor","transparent")}></div>
+                 <div className="text-item" onClick={() => handleToText("formatBlock","<BLOCKQUOTE>")}></div>
                 <div className="ad-out">
                   <div className="btn-save" onClick={handleToSave}>save</div>
                   <div className="btn-publish" onClick={handleToPublish}>publish</div>

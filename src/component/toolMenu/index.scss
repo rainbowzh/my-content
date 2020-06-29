@@ -10,7 +10,8 @@
     width: 5px;
     margin: auto;
     background: linear-gradient(#eb6912, #c4a80d,#e2ad1c);
-    animation: lineframes 8s ease-in-out infinite;
+    animation: lineframes 5s ease-in-out infinite;
+    padding-top: 38px;
   }
   .tool-block{
     width: 70px;
@@ -20,7 +21,8 @@
     padding: 5px 0px;
     background: #fff;
     margin-top: -5px;
-    animation: blockframes 8s ease-in-out 0.4s infinite;
+    animation: blockframes 5s ease-in-out 0.4s infinite;
+    margin-left: -35px;
   }
   .menu-item{
     height: 30px;
@@ -37,25 +39,25 @@
 
 @keyframes lineframes{
   0%{
-    transform: rotate3d(1, 1, 1, 10deg);
+    transform: rotate(-3deg);
   }
   
   50%{
-    transform: rotate3d(1, 1, 1, -10deg);
+    transform: rotate(3deg);
   }
   100%{
-    transform: rotate3d(1, 1, 1, 10deg);
+    transform: rotate(-3deg);
   }
 }
 @keyframes blockframes {
   0%{
-    transform: rotate3d(1, 1, 1, -5deg);
+    transform: rotate3d(0, 1, 0, 20deg);
   }
   
   50%{
-    transform: rotate3d(1, 1, 1, 5deg);
+    transform: rotate3d(0, 1, 0, -20deg);
   }
   100%{
-    transform: rotate3d(1, 1, 1, -5deg);
+    transform: rotate3d(0, 1, 0, 20deg);
   }
 }
