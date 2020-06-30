@@ -109,23 +109,24 @@
       }
     }
     .text-tool .text-size-block{
-      width: 100%;
+      width: 120%;
       height: auto;
       display: none;
       position: absolute;
       top: 59px;
+      left: -10%;
       border: 1px solid  rgba(137, 48, 221, 0.8);
       color: #363636;
-      font-size: 16px;
+      font-size: 20px;
       z-index: 2;
     }
     .text-size-block p{
-      height: 22px;
-      line-height: 22px;
+      height: 32px;
+      line-height: 32px;
       background: #fff;
     }
     .text-size-block p:hover{
-      background-color: rgba(137, 48, 221, 0.6);
+      background-color: rgba(137, 48, 221, 0.9);
       color: #fff;
     }
     .text-tool .ad-out{
