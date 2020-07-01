@@ -1,6 +1,6 @@
 .Slide-block{
   width: 1200px;
-  height: 500px;
+  height: 600px;
   // border:1px solid #eee ;
   margin: auto;
   margin-top: 80px;
@@ -38,7 +38,7 @@
     height: 100%;
     padding: 20px 60px;
     img{
-      width: 400px;
+      width: 300px;
       height: 100%;
       float: left;
     }
@@ -46,12 +46,25 @@
       cursor: pointer;
     }
     .intro-item{
-      width: calc(100% - 400px);
+      width: calc(100% - 300px);
       float: left;
       height: 100%;
       background: #fff;
-      padding: 20px;
+      padding: 40px;
       border-radius: 0px 10px 10px 0px;
+    }
+    .intro-item p{
+      color: #000;
+      line-height: 40px ;
+      font-size: 16px;
+      text-align: left;
+      margin-bottom: 10px;
+    }
+    .intro-item .pro-title{
+      font-size: 20px;
+      font-weight: bold;
+      line-height: 48px;
+      margin-bottom: 20px;
     }
   }
   .width-frame{

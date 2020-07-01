@@ -50,6 +50,7 @@ $imgRoot:"//img.58cdn.com.cn/job/m/my/qzzbz/0.1/img/" ;
       display: block;
       transform: rotateY(-180deg);
       transition: all .5s ease-out;
+      color: rgba(140, 37, 209, 0.8);
     }
     .reverse-detail-show p {
       line-height: 40px;
@@ -59,23 +60,26 @@ $imgRoot:"//img.58cdn.com.cn/job/m/my/qzzbz/0.1/img/" ;
       display: none;
     }
   }
-  .person-cards-block .title-img:nth-child(1){
-    background: url('../../assest/gongsi.png') no-repeat;
+  .person-cards-block:nth-child(1) .title-img{
+    background: url('../../assest/user.png') no-repeat;
   }
   .person-cards-block:nth-child(2) .title-img{
-    background: url('../../assest/ganxingquzhiwei.png') no-repeat;
+    background: url('../../assest/gongsi.png') no-repeat;
   }
-  .person-cards-block:nth-child(3) .title-img:nth-child(3){
+  .person-cards-block:nth-child(3) .title-img{
     background: url('../../assest/gongzuotai.png') no-repeat;
+    border-radius: 0px;
   }
-  .person-cards-block .title-img:nth-child(4){
+  .person-cards-block:nth-child(4) .title-img{
     background: url('../../assest/jishufuwu.png') no-repeat;
+    border-radius: 0px;
   }
   .person-cards-block:nth-child(5) .title-img{
-    background: url('../../assest/qita.png') no-repeat;
+    background: url('../../assest/xiangmu.png') no-repeat;
+    border-radius: 0px;
   }
-  .person-cards-block:nth-child(6) .title-img:nth-child(3){
-    background: url('../../assest/user.png') no-repeat;
+  .person-cards-block:nth-child(6) .title-img{
+    background: url('../../assest/qita.png') no-repeat;
   }
   .icon-more{
     width: 40px;
@@ -94,20 +98,58 @@ $imgRoot:"//img.58cdn.com.cn/job/m/my/qzzbz/0.1/img/" ;
     margin-top: 80px;
   }
   .extends-intro{
-    width: 1200px;
-    height: 200px;
+    width: 800px;
+    height: auto;
     margin: 80px auto;
-    // overflow: hidden;
-    .gotoList,.gotoEdit{
-      width: calc((100% - 40px)/2);
-      height: 100%;
+    position: relative;
+    .youSaid-block{
+      display: block;
+      width: 500px;
+      height: 280px;
+      text-decoration: none;
+      border-style: none;
       border-radius: 10px;
-      float: left;
-      background: #fff;
-      box-shadow: 0px 2px 2px 0px #eee;
+      margin: auto ;
+      padding: 10px;
     }
-    .gotoEdit{
-      margin-left: 40px;
+    .support, .unsupport {
+      width: 30px;
+      height: 30px;
+      background-image: url('../../assest/zan1.png');
+      // background-image: 
+      background-size: cover ;
+      background-position: center;
+      margin-bottom: 6px;
+      position: absolute ;
+      top: 30px;
+      left: 50px;
+      cursor: pointer;
+      opacity: 0.7;
+      &:hover{
+       opacity: 1;
+      }
+    }
+    .unsupport{
+      transform: rotate(-180deg);
+      top: 70px;
+    }
+    .youSaid-submit {
+      font-size: 18px;
+      width: 100px;
+      height: 40px;
+      line-height: 40px;
+      background: #eee;
+      border-radius: 20px;
+      color: #666;
+      border: 1px solid #fff;
+      letter-spacing: 5px;
+      margin: auto;
+      margin-top: 30px;
+      cursor: pointer;
+    }
+    .youSaid-submit:hover{
+      background: rgba(140, 37, 209, 0.2);
+      color: #fff;
     }
   }
 }

@@ -10,7 +10,7 @@ const ToolMenu = () => {
           <ul>
             <Link to="/"><li className="menu-item">首页</li></Link>
             <Link to="/edit"><li className="menu-item">发布</li></Link>
-            <Link to="/article"><li className="menu-item">列表</li></Link>
+            <Link to="/list"><li className="menu-item">列表</li></Link>
           </ul>
         </div>
       </div>

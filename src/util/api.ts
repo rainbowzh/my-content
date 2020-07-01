@@ -3,12 +3,12 @@
  * @Version: 2.0
  * @Author: zhouhong07
  * @Date: 2020-05-11 10:37:28
- * @LastEditors: zhouhong07
- * @LastEditTime: 2020-07-01 17:59:53
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2020-07-02 00:09:01
  */
 import axios from 'axios' ;
-// const host = '//49.235.235.22:3000/api' ;
-const host = '//localhost:3000/api' ;
+const host = '//49.235.235.22:3000/api' ;
+// const host = '//localhost:3000/api' ;
 
 
 const postLogin = (value:any) => {

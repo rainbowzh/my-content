@@ -27,7 +27,6 @@ const ListPage  = () => {
             )
           })
         }
-        <div className="extends-main-list"></div>
       </div>
     </div>
   )
