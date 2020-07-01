@@ -4,11 +4,11 @@
  * @Author: zhouhong07
  * @Date: 2020-05-11 10:37:28
  * @LastEditors: zhouhong07
- * @LastEditTime: 2020-06-05 10:45:09
+ * @LastEditTime: 2020-07-01 17:59:53
  */
 import axios from 'axios' ;
-const host = '//49.235.235.22:3000/api' ;
-
+// const host = '//49.235.235.22:3000/api' ;
+const host = '//localhost:3000/api' ;
 
 
 const postLogin = (value:any) => {
@@ -55,10 +55,42 @@ const getArticleList = () => {
   })
 }
 
+//获取当前id的文章
+const getCurIdArticle = (id:string) => {
+  return axios.get(`${host}/article/detail`, {
+    params : {
+      id : id
+    },
+    timeout : 5000
+  })
+  .then((res) => {
+    console.log(res);
+    return res.data.data ;
+  })
+  .catch((err) => {
+    console.log(err) ;
+  })
+}
 
+
+//获取标签列表
+const getTagList = () => {
+  return axios.get(`${host}/article/tagList` ,{
+    timeout : 5000 
+  })
+  .then((res) => {
+    console.log(res);
+    return res.data.data ;
+  })
+  .catch((err) => {
+    console.log(err) ;
+  })
+}
 
 export {
   postLogin ,
   postArticle ,
-  getArticleList
+  getArticleList ,
+  getCurIdArticle ,
+  getTagList
 }

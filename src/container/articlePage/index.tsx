@@ -1,46 +1,39 @@
 import React, { useEffect, useState } from 'react' ;
 import { Header, DetaiList } from '../../component' ;
-import { getArticleList } from '../../util/api' ;
+import { getCurIdArticle } from '../../util/api' ;
+import { withRouter } from 'react-router-dom' ;
 
-const ArticlePage = () => {
-  const [list, setList] = useState([]) ;
-  const [content, setContent] = useState("暂无内容") ;
+
+const ArticlePage = (props:any) => {
+  const [data, setData] = useState({publishTime : "" , title : "" ,context : "暂无更多"}) ;
+  // const [content, setContent] = useState("暂无内容") ;
+
   useEffect(() =>  {
-    const getList = async () => {
-      let res = await getArticleList();
-      console.log('list---',res.list) ;
-      setList(res.list);
-      // if()
-      // setContent(res.list[2].context);
+    const getId = () => {
+      let result:string = props.location.pathname.split("/")[2] || "";
+      return result ;
     }
-    getList();
+    const getDetail = async () => {
+      let res = await getCurIdArticle(getId());
+      console.log('list---',res) ;
+      setData(res);
+    }
+    getDetail();
   },[]);
 
+
   //切换了文章
-  const updateContent = (value:any) => {
-    const { context } = value;
-    setContent(context) ;
-  }
+  // const updateContent = (value:any) => {
+  //   const { context } = value;
+  //   setContent(context) ;
+  // }
 
   return (
     <React.Fragment>
       <Header/>
       <div className="ArticlePage-block">
-        <div className="leftList">
-          <div className="center-extends">
-           
-            {
-              list.map( (item:any, index:number) => {
-                return(
-                  <DetaiList data={item} key={index} tool={updateContent}/>
-                )
-              })
-            }
-          </div>
-          <div className="content-main" dangerouslySetInnerHTML={{__html: content}}>
-          </div>
-        </div>
-        <div className="rightList">
+          <div className="content-main" dangerouslySetInnerHTML={{__html: data.context}}></div>
+        {/* <div className="rightList">
           <span>热门</span>
           <span>热门职位</span>
           <span>热门职位</span>
@@ -51,11 +44,11 @@ const ArticlePage = () => {
           <span>热门职位</span>
           <span>热门职位</span>
           <span>热门职位</span>
-        </div>
+        </div> */}
       </div>
     </React.Fragment>
   )
 }
 
 
-export default ArticlePage;
+export default withRouter(ArticlePage);

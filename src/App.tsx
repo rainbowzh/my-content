@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, HashRouter as Router ,Route, Redirect } from 'react-router-dom' ;
-import { IndexPage , IntroPage, LoginPage, ArticlePage, EditPage, MarkedPage } from './container' ;
+import { IndexPage , IntroPage, LoginPage, ArticlePage, EditPage, MarkedPage, ListPage } from './container' ;
 import { AppProvider } from './state' ;
 import './App.scss';
 
@@ -28,8 +28,9 @@ function App() {
             <Route exact path="/" component={IndexPage}></Route>
             <Route exact path="/login" component={LoginPage}></Route>
             <Route exact path="/intro" component={IntroPage}></Route>
-            <Route exact path="/article" component={ArticlePage}></Route>
+            <Route path="/article" component={ArticlePage}></Route>
             <Route path="/edit" component={MarkedPage}></Route>
+            <Route exact path="/list" component={ListPage}></Route>
             <Redirect to="/"></Redirect>
         </Switch>
       </Router>
