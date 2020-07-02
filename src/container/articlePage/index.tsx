@@ -32,7 +32,7 @@ const ArticlePage = (props:any) => {
     <React.Fragment>
       <Header/>
       <div className="ArticlePage-block">
-          <div className="content-main" dangerouslySetInnerHTML={{__html: data.context}}></div>
+          <div className="content-main custom-html-style" dangerouslySetInnerHTML={{__html: data.context}}></div>
         {/* <div className="rightList">
           <span>热门</span>
           <span>热门职位</span>

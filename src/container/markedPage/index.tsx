@@ -5,13 +5,15 @@ import MarkdownIt from 'markdown-it' ;
 import 'react-markdown-editor-lite/lib/index.css';
 import { postArticle, getTagList } from '../../util/api' ;
 import { Modal } from 'antd' ;
-
+import TYPE from './index.d';
 
 const MarkedPage = ()  => {
   const [visible, setVisible] = useState(false) ; //是否出现发布提示
   const [html, setHtml] = useState("") ;//转换成的html
   const [title, setTitle] = useState(new Date().toLocaleDateString()); //文章title
   const [tagList, setTagList] = useState([]) ;//标签数组
+  const [curTag, setCurTag] = useState({}) ;//发布选中的标签
+
   let inputValue:any = useRef(null);
 
   const mdParser = new MarkdownIt(/* Markdown-it options */) ;
@@ -34,16 +36,18 @@ const MarkedPage = ()  => {
   const handleToSubmit = (e:any) => {
     e.stopPropagation() ;
     console.log("html",html,title);
-    let params = {
+    
+    let params:TYPE.postArticleType = {
       title : title ,
-      context : html 
+      context : html ,
+      textType : curTag
     }
     postArticle(params).then((res) => {
       if(res.status == '0'){
          Modal.success({
           title : "发布成功" ,
           onOk : () => {
-            window.location.href= "/article";
+             window.location.href= "//49.235.235.22:3000/web/mylog#/article";
           }
         })
       }else{
@@ -61,9 +65,10 @@ const MarkedPage = ()  => {
     console.log("e",inputValue.current.value);
   }
 
-  //选定标签
-  const handleToChooseTag = () => {
-    console.log(1);
+  //发布前选定标签
+  const handleToChooseTag = (item:TYPE.TagType) => {
+    console.log(item);
+    setCurTag(item);
   }
 
 
@@ -94,15 +99,10 @@ const MarkedPage = ()  => {
               {
                 tagList.map((item:any, index:number) => {
                   return (
-                    <span className="item-type" key={index} onClick={handleToChooseTag}>{item.tagName}</span>
+                    <span className="item-type" key={index} onClick={() => handleToChooseTag(item)}>{item.tagName}</span>
                   )
                 })
               }
-              {/* <span className="item-type">react</span>
-              <span className="item-type">日记</span>
-              <span className="item-type">css</span>
-              <span className="item-type">技术</span>
-              <span className="item-type">其他</span> */}
             </div>
             <div className="button-submit" onClick={(e) => handleToSubmit(e)}>确定发布</div>
           </div>

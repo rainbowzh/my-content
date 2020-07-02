@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react' ;
-import * as echarts from 'echarts' ;
-
+import * as echarts from 'echarts/lib/echarts' ;
+import 'echarts/lib/chart/pie';
 
 const ShapeIntro = ()  => {
   const curRef:any = useRef(null) ;
