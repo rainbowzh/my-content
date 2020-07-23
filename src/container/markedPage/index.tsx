@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react' ;
+import React, { useState, useEffect, useRef, useCallback } from 'react' ;
 // import ReactDOM from 'react-dom' ;
 import MdEditor from 'react-markdown-editor-lite' ;
 import MarkdownIt from 'markdown-it' ;
@@ -13,6 +13,7 @@ const MarkedPage = ()  => {
   const [title, setTitle] = useState(new Date().toLocaleDateString()); //文章title
   const [tagList, setTagList] = useState([]) ;//标签数组
   const [curTag, setCurTag] = useState({}) ;//发布选中的标签
+  const [actived, setActived]  = useState([]); //选择标签数组
 
   let inputValue:any = useRef(null);
 
@@ -66,17 +67,30 @@ const MarkedPage = ()  => {
   }
 
   //发布前选定标签
-  const handleToChooseTag = (item:TYPE.TagType) => {
-    console.log(item);
+  const handleToChooseTag = (item:TYPE.TagType, e:any) => {
+    // console.log(item);
+    // e.stopPropagation();
     setCurTag(item);
+    let temp =  e.target.className ;
+    console.log('temp',temp, temp.indexOf("actived"));
+    if(temp.indexOf("actived") == -1) {
+      e.target.className += ' actived' ;
+      console.log('temp',temp, temp.indexOf("actived"));
+    }
+    else{
+      e.target.className = temp.slice(0, temp.indexOf("actived") - 1 );
+    }
+    // console.log('e',e.target.className);
   }
 
-
+  //触发其他地方点击关闭
   const handleShowTags = (e:any) => {
     e.stopPropagation();
     e.nativeEvent.stopImmediatePropagation();
   }
 
+
+  //
   useEffect(() => {
     document.addEventListener('click', () => {
       setVisible(false);
@@ -87,6 +101,7 @@ const MarkedPage = ()  => {
     }
     getTagData();
   },[]);
+
 
   return(
     <div className="MarkedPage-block">
@@ -99,7 +114,7 @@ const MarkedPage = ()  => {
               {
                 tagList.map((item:any, index:number) => {
                   return (
-                    <span className="item-type" key={index} onClick={() => handleToChooseTag(item)}>{item.tagName}</span>
+                    <span className="item-type" key={index} onClick={(e) => handleToChooseTag(item , e)}>{item.tagName}</span>
                   )
                 })
               }

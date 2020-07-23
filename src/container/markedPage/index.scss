@@ -102,6 +102,14 @@
       margin:6px;
     }
     .article-publish .item-type:hover{
+      background: rgb(173, 100, 241);
+      color: #fff;
+    }
+    .article-publish .item-type:active{
+      background: rgb(137, 48, 221);
+      color: #fff;
+    }
+    .article-publish .actived{
       background: rgb(137, 48, 221);
       color: #fff;
     }
