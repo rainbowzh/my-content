@@ -14,14 +14,6 @@ const IndexPage = (props:any) => {
     setId(id+1) ;
   }
   
-  useEffect(() => {
-    axios.get("http://localhost:3000/users").then((res) => {
-      console.log('555',res) ;
-    }).catch((err) => {
-      console.log(err);
-    })
-  },[])
-
 
   //防抖
   function useDebounce(fn:any, delay:number) {
@@ -42,7 +34,6 @@ const IndexPage = (props:any) => {
     );
   }
 
-  console.log('props',state.username) ;
 
   return (
     <div className="IndexPage-block">

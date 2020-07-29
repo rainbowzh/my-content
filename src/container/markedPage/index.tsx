@@ -48,7 +48,7 @@ const MarkedPage = ()  => {
          Modal.success({
           title : "发布成功" ,
           onOk : () => {
-             window.location.href= "//49.235.235.22:3000/web/mylog#/article";
+             window.location.href= "//zhsroom.cn/web/mylog#/list";
           }
         })
       }else{
