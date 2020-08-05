@@ -1,4 +1,4 @@
-import React, { useState } from 'react' ;
+import React, { useState, useEffect } from 'react' ;
 import ShapeIntro from '../shapIntro' ;
 import { SlideBlock, ToolMenu } from '../../component';
 const IntroPage = () => {
@@ -57,6 +57,13 @@ const IntroPage = () => {
     setCurEnter(index);
   }
 
+  useEffect(() => {
+    window.scrollTo({ 
+      top: 0, 
+      behavior: "smooth" 
+    });
+  },[]);
+
   return(
     <div className="IntroPage-block">
       <ul className="person-cards-content">
@@ -72,7 +79,7 @@ const IntroPage = () => {
                   {
                     item.back.map((initem:any, inindex:number) => {
                       return(
-                        <p>{initem}</p>
+                        <p key={inindex}>{initem}</p>
                       )
                     })
                   }
@@ -91,8 +98,6 @@ const IntroPage = () => {
       <div className="icon-more"></div>
       <div className="extends-intro">
         <textarea name="youSaid" id="" cols={30} rows={10} className="youSaid-block" placeholder="有什么想对我说的畅所欲言吧~"></textarea>
-        <div className="support"></div>
-        <div className="unsupport"></div>
         <div className="youSaid-submit">提交</div>
       </div>
       <ToolMenu/>

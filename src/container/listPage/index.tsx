@@ -13,6 +13,10 @@ const ListPage  = () => {
       setList(res.list);
     }
     getList();
+    window.scrollTo({ 
+      top: 0, 
+      behavior: "smooth" 
+    });
   },[]);
 
 

@@ -4,12 +4,11 @@
  * @Author: zhouhong07
  * @Date: 2020-05-11 10:37:28
  * @LastEditors: zhouhong07
- * @LastEditTime: 2020-07-29 16:41:36
+ * @LastEditTime: 2020-08-05 19:55:59
  */
 import axios from 'axios' ;
 const host = '//zhsroom.cn/api' ;
-
-
+// const host = `//localhost:8080/api` ;
 const postLogin = (value:any) => {
   return axios.post(`${host}/user/login` ,{
     username : value.name ,
@@ -30,7 +29,7 @@ const postArticle = (value:any) => {
   return axios.post(`${host}/article/save`, {
     title : value.title ,
     context : value.context ,
-    textType : value.textType || {}
+    textType : value.textType || []
   })
   .then((res) => {
     console.log(res) ;

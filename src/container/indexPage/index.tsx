@@ -13,6 +13,13 @@ const IndexPage = (props:any) => {
     console.log("id:",id) ;
     setId(id+1) ;
   }
+
+  useEffect(() => {
+    window.scrollTo({ 
+      top: 0, 
+      behavior: "smooth" 
+    });
+  },[]);
   
 
   //防抖

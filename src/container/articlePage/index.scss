@@ -70,11 +70,24 @@
     width: 900px;
     min-height: 600px;
     height: auto;
-    padding: 60px 40px;
+    padding: 20px 40px 60px;
     margin: auto;
     background: #fff;
     border-radius: 10px;
     text-align: left;
+    margin-bottom: 50px;
+    .article-page-title{
+      width: 100%;
+      line-height: 100px;
+      color: #000;
+      font-size: 26px;
+      border-bottom: 1px solid #eee;
+    }
+    .article-page-main{
+      margin-top: 40px;
+      width: 100%;
+      height: auto;
+    }
   }
 }
 

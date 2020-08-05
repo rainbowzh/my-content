@@ -19,6 +19,10 @@ const ArticlePage = (props:any) => {
       setData(res);
     }
     getDetail();
+    window.scrollTo({ 
+      top: 0, 
+      behavior: "smooth" 
+    });
   },[]);
 
 
@@ -32,19 +36,10 @@ const ArticlePage = (props:any) => {
     <React.Fragment>
       <Header/>
       <div className="ArticlePage-block">
-          <div className="content-main custom-html-style" dangerouslySetInnerHTML={{__html: data.context}}></div>
-        {/* <div className="rightList">
-          <span>热门</span>
-          <span>热门职位</span>
-          <span>热门职位</span>
-          <span>热门职位专区</span>
-          <span>热门职位</span>
-          <span>热门位</span>
-          <span>热门位</span>
-          <span>热门职位</span>
-          <span>热门职位</span>
-          <span>热门职位</span>
-        </div> */}
+        <div className="content-main" >
+          <div className="article-page-title">{data.title}</div>
+          <div className="article-page-main custom-html-style" dangerouslySetInnerHTML={{__html: data.context}}></div>
+        </div>
       </div>
     </React.Fragment>
   )

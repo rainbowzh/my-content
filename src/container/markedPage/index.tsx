@@ -6,6 +6,7 @@ import 'react-markdown-editor-lite/lib/index.css';
 import { postArticle, getTagList } from '../../util/api' ;
 import { Modal } from 'antd' ;
 import TYPE from './index.d';
+import Item from 'antd/lib/list/Item';
 
 const MarkedPage = ()  => {
   const [visible, setVisible] = useState(false) ; //是否出现发布提示
@@ -13,17 +14,19 @@ const MarkedPage = ()  => {
   const [title, setTitle] = useState(new Date().toLocaleDateString()); //文章title
   const [tagList, setTagList] = useState([]) ;//标签数组
   const [curTag, setCurTag] = useState({}) ;//发布选中的标签
-  const [actived, setActived]  = useState([]); //选择标签数组
+  const [activedArr, setActivedArr]  = useState([]); //选择标签数组
+  const [isClick, setIsClick] = useState(true) ; //复选标志位
 
   let inputValue:any = useRef(null);
-
+  const timerId = useRef<NodeJS.Timer | null >(null) ;
   const mdParser = new MarkdownIt(/* Markdown-it options */) ;
   const mock_content:string = "Hello.\n\n * This is markdown.\n * It is fun\n * Love it or leave it." ;
 
   //编辑页面值
   const handleEditorChange = ({html , text}:any) => {
-    // console.log('handleEditorChange', html, text)
+    console.log('handleEditorChange', html, text)
     setHtml(html);
+    window.localStorage.setItem('myblogEdit',`${html}`);
   }
 
   //是否出现发布提示
@@ -41,18 +44,22 @@ const MarkedPage = ()  => {
     let params:TYPE.postArticleType = {
       title : title ,
       context : html ,
-      textType : curTag
+      textType : activedArr
     }
+    if(html == "") {
+      console.log('没有内容');
+      return;
+    } ;
     postArticle(params).then((res) => {
       if(res.status == '0'){
          Modal.success({
           title : "发布成功" ,
           onOk : () => {
-             window.location.href= "//zhsroom.cn/web/mylog#/list";
+            window.location.href= "/web/mylog#/list";
           }
         })
       }else{
-         Modal.error({
+        Modal.error({
           title : "发布失败" ,
         })
       }
@@ -68,9 +75,10 @@ const MarkedPage = ()  => {
 
   //发布前选定标签
   const handleToChooseTag = (item:TYPE.TagType, e:any) => {
-    // console.log(item);
+    console.log('item',item);
     // e.stopPropagation();
-    setCurTag(item);
+    setCurTag(item) ;
+    setIsClick(!isClick) ;
     let temp =  e.target.className ;
     console.log('temp',temp, temp.indexOf("actived"));
     if(temp.indexOf("actived") == -1) {
@@ -80,7 +88,6 @@ const MarkedPage = ()  => {
     else{
       e.target.className = temp.slice(0, temp.indexOf("actived") - 1 );
     }
-    // console.log('e',e.target.className);
   }
 
   //触发其他地方点击关闭
@@ -90,7 +97,7 @@ const MarkedPage = ()  => {
   }
 
 
-  //
+  //获取tag数据
   useEffect(() => {
     document.addEventListener('click', () => {
       setVisible(false);
@@ -102,12 +109,52 @@ const MarkedPage = ()  => {
     getTagData();
   },[]);
 
+  //选定标签的变化
+  useEffect(() => {
+    let flag = activedArr.findIndex((item:any) => {
+      console.log('item',item,curTag);
+      return item == curTag ;
+    });
+    console.log('flag',flag);
+    if(flag == -1 && Object.keys(curTag).length > 0) {
+      let tempArr:any = activedArr ;
+      tempArr.push(curTag);
+      setActivedArr(tempArr) ;
+    }else if(flag !== -1){
+      let tempArr:any = activedArr ;
+      tempArr.splice(flag, 1);
+      setActivedArr(tempArr) ;
+    }
+    console.log('activedArr',activedArr, curTag);
+  },[isClick]);
+
+  const useDebounce = (fn:any, delay:number = 300, dep:any[] = []) => {
+    const { current } = useRef({ fn, timer: null });
+    useEffect(function () {
+      current.fn = fn;
+    }, [fn]);
+
+    return useCallback(function f(this:typeof f ,...args) {
+      if (current.timer) {
+        clearTimeout((current.timer as any));
+      }
+      (current.timer as any)  = setTimeout(() => {
+        current.fn.call(this, ...args);
+      }, delay);
+    }, dep)
+  }
+  const handleToSaveContext = () => {
+    window.localStorage.setItem('myblogEdit',`${html}`);
+  }
 
   return(
     <div className="MarkedPage-block">
       <div className="Marked-nav-bar">
         <input type="text" ref={inputValue} className="article-title" placeholder="请输入文章标题..." onChange={() => handleTitleChange()}/>
-        <div className="save-intime">已自动保存</div>
+        <div className="save-intime">已自动保存...</div>
+        <div className="save-btn" onClick={handleToSaveContext}>
+          <span>保存</span>
+        </div>
         <div className="article-publish" onClick={(e) => handleToShowBlock(e)}>发布
           <div className={visible ? "selectType" : "selectType-hidden"} onClick={(e) => handleShowTags(e)}>
             <div className="type-content">
@@ -127,7 +174,7 @@ const MarkedPage = ()  => {
       <MdEditor
         value={mock_content}
         renderHTML={(text) => mdParser.render(text)}
-        onChange={handleEditorChange} 
+        onChange={useDebounce(handleEditorChange)} 
       />
     </div>
   )
