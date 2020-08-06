@@ -4,7 +4,7 @@
  * @Author: zhouhong07
  * @Date: 2020-05-11 10:37:28
  * @LastEditors: zhouhong07
- * @LastEditTime: 2020-08-05 19:55:59
+ * @LastEditTime: 2020-08-06 10:13:40
  */
 import axios from 'axios' ;
 const host = '//zhsroom.cn/api' ;
@@ -86,10 +86,29 @@ const getTagList = () => {
   })
 }
 
+
+//留言
+interface sayWhatTypes {
+  nickName : string ,
+  sayText : string
+}
+const sayWhat = (value:sayWhatTypes) => {
+  return axios.post(`${host}/user/sayWords/save` ,{
+    nickName : value.nickName ,
+    sayText : value.sayText
+  }).then((res) => {
+    console.log(res) ;
+    return res.data ;
+  }).catch((err) => {
+    console.log('sayWhat-error',err);
+  })
+}
+
 export {
   postLogin ,
   postArticle ,
   getArticleList ,
   getCurIdArticle ,
-  getTagList
+  getTagList ,
+  sayWhat
 }

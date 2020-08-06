@@ -151,6 +151,29 @@ $imgRoot:"//img.58cdn.com.cn/job/m/my/qzzbz/0.1/img/" ;
       background: rgba(140, 37, 209, 0.2);
       color: #fff;
     }
+    .youSaid-name{
+      border: none;
+      margin-top: 30px;
+      height: 40px;
+      padding: 0px 3px;
+      border-bottom: 1px solid #fff;
+      background: transparent;
+      color: #fff;
+      font-size: 16px;
+      text-align: center;
+    }
+    .youSaid-name::-webkit-input-placeholder {
+      color: #fff;
+    }
+    .youSaid-name::-moz-input-placeholder {
+      color: #fff;
+    }
+    .youSaid-name::-ms-input-placeholder {
+      color: #fff;
+    }
+  }
+  .visible {
+    display: none;
   }
 }
 

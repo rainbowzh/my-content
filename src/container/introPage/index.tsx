@@ -1,8 +1,15 @@
-import React, { useState, useEffect } from 'react' ;
+import React, { useState, useEffect, useRef, useCallback } from 'react' ;
 import ShapeIntro from '../shapIntro' ;
 import { SlideBlock, ToolMenu } from '../../component';
+import { sayWhat } from '../../util/api' ;
+
+
+
 const IntroPage = () => {
   const [curEnter, setCurEnter]= useState(-1) ;
+  const [textLen, setTextLen] = useState(0) ;
+  const textareaRef = useRef<any>(null) ;
+  const inputRef = useRef<any>(null) ;
   const list = [
     {
       front : "个人资料" ,
@@ -64,6 +71,42 @@ const IntroPage = () => {
     });
   },[]);
 
+
+  //提交留言
+  const handleToSubmit = async() => {
+    let sayText = textareaRef.current.value ;
+    let nickName = inputRef.current.value ;
+    let res = await sayWhat({sayText , nickName});
+    if(res) {
+      console.log('submit' ,res) ;
+      window.location.href = `//zhsroom.cn/web/mylog#/list` ;
+    }else{
+      console.log('defeat',res) ;
+    }
+  } ;
+  //留言内容
+  const handleChange = () => {
+    console.log('textareaRef.current',textareaRef.current.value.length)
+    setTextLen(textareaRef.current.value.length);
+  } ;
+
+  //防抖
+  const useDebounce = (fn:any, delay:number = 300, dep:any[] = []) => {
+    const { current } = useRef({ fn, timer: null });
+    useEffect(function () {
+      current.fn = fn;
+    }, [fn]);
+
+    return useCallback(function f(this:typeof f ,...args) {
+      if (current.timer) {
+        clearTimeout((current.timer as any));
+      }
+      (current.timer as any)  = setTimeout(() => {
+        current.fn.call(this, ...args);
+      }, delay);
+    }, dep)
+  };
+
   return(
     <div className="IntroPage-block">
       <ul className="person-cards-content">
@@ -97,8 +140,9 @@ const IntroPage = () => {
       <SlideBlock/>
       <div className="icon-more"></div>
       <div className="extends-intro">
-        <textarea name="youSaid" id="" cols={30} rows={10} className="youSaid-block" placeholder="有什么想对我说的畅所欲言吧~"></textarea>
-        <div className="youSaid-submit">提交</div>
+        <textarea name="youSaid" id="" cols={30} rows={10} className="youSaid-block" placeholder="有什么想对我说的畅所欲言吧~" ref={textareaRef} onChange={useDebounce(handleChange)}></textarea>
+        <input type="text" className={textLen > 15 ? "youSaid-name" : "youSaid-name visible"} placeholder="留下你的昵称吧~" ref={inputRef}/>
+        <div className="youSaid-submit" onClick={useDebounce(handleToSubmit)}>提交</div>
       </div>
       <ToolMenu/>
     </div>
